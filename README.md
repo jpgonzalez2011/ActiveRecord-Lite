@@ -2,7 +2,7 @@
 
 ## Object Relational Mapping Inspired by Active Record
 
-Uses Ruby to generate SQL query code via metaprogramming.
+Uses Ruby to generate SQL query code via meta-programming.
 
 ##Features
 
