@@ -36,6 +36,7 @@ end
 module Associatable
   def belongs_to(name, options = {})
     options = BelongsToOptions.new(name, options)
+    self.assoc_options[name] = options
     define_method(name) do
       @foreign_key = options.send(:foreign_key)
       @class_name = options.model_class
@@ -58,6 +59,7 @@ module Associatable
 
   def has_many(name, options = {})
     options = HasManyOptions.new(name, self.name, options)
+    self.assoc_options[name] = options
     define_method(name) do
       @foreign_key = options.send(:foreign_key)
       @class_name = options.model_class
@@ -79,6 +81,38 @@ module Associatable
   end
 
   def assoc_options
+    @assoc_options ||= {}
+    @assoc_options
+  end
+
+  def has_one_through(name, through_name, source_name)
+    define_method(name) do
+      through_assoc_options = self.class.assoc_options[through_name]
+      through_table = through_assoc_options.table_name
+      through_primary_key  = through_assoc_options.primary_key
+      through_foreign_key = through_assoc_options.foreign_key
+
+      source_assoc_options = through_assoc_options.model_class.assoc_options[source_name]
+      source_table = source_assoc_options.table_name
+      source_primary_key = source_assoc_options.primary_key
+      source_foreign_key = source_assoc_options.foreign_key
+
+      key_value = self.send(through_foreign_key)
+      results = DBConnection.execute(<<-SQL, key_value)
+        SELECT
+          #{source_table}.*
+        FROM
+          #{source_table}
+        JOIN
+          #{through_table}
+        ON
+          #{through_table}.#{source_foreign_key} = #{source_table}.#{source_primary_key}
+        WHERE
+          #{through_table}.#{through_primary_key} = ?
+      SQL
+
+      source_assoc_options.model_class.parse_all(results).first
+    end
   end
 end
 
