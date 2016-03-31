@@ -27,9 +27,9 @@ Uses Ruby to generate SQL query code via meta-programming.
 - SQLite3
 
 ## ActiveRecord Methods Available
-- ::all
-- ::find
-- ::where
+- ::all (Ex. "Cat.all") - Returns an array of all Cats.
+- ::find (Ex. "Cat.find(2)") - Returns Cat with corresponding id.
+- ::where (Ex. "Cat.where(name: 'Garfield')") - Returns Cat(s) matching criteria.
 - #insert
 - #save
 - #update
