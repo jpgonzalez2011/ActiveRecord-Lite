@@ -10,16 +10,16 @@ Uses Ruby to generate SQL query code via meta-programming.
 - Navigate into the repository.
 - Open irb or pry.
 - Load the demo.rb file
-'''
+```
 load 'demo.rb'
-'''
+```
 - Try c = Cat.find(1)
 - Run methods on c - such as c.human and c.house
 - Methods can also be chained.
-  '''
+  ```
     Cat.find(1).human
     Cat.find(1).human.house
-  '''
+  ```
 
 ##  Features
 
@@ -34,17 +34,17 @@ load 'demo.rb'
 
 ## ActiveRecord Methods Available
 - ::all
-'''
+```
   Cat.all # => Array of Cats
-'''
+```
 - ::find
-'''
+```
 Cat.find(2) # => Cat with id of 2
-'''
+```
 - ::where
-'''
+```
 Cat.where(name: 'Garfield') #=> Cat named 'Garfield'
-'''
+```
 - #insert
 - #save
 - #update
