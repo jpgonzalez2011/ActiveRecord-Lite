@@ -9,11 +9,17 @@ Uses Ruby to generate SQL query code via meta-programming.
 - Clone the repository.
 - Navigate into the repository.
 - Open irb or pry.
-- Load the demo.rb file (enter "load 'demo.rb'" into irb or pry)
+- Load the demo.rb file
+'''
+load 'demo.rb'
+'''
 - Try c = Cat.find(1)
 - Run methods on c - such as c.human and c.house
 - Methods can also be chained.
-    - Try Cat.find(1).human and Cat.find(1).human.house to see how this works.
+  '''
+    Cat.find(1).human
+    Cat.find(1).human.house
+  '''
 
 ##  Features
 
@@ -27,9 +33,18 @@ Uses Ruby to generate SQL query code via meta-programming.
 - SQLite3
 
 ## ActiveRecord Methods Available
-- ::all (Ex. "Cat.all") - Returns an array of all Cats.
-- ::find (Ex. "Cat.find(2)") - Returns Cat with corresponding id.
-- ::where (Ex. "Cat.where(name: 'Garfield')") - Returns Cat(s) matching criteria.
+- ::all
+'''
+  Cat.all # => Array of Cats
+'''
+- ::find
+'''
+Cat.find(2) # => Cat with id of 2
+'''
+- ::where
+'''
+Cat.where(name: 'Garfield') #=> Cat named 'Garfield'
+'''
 - #insert
 - #save
 - #update
