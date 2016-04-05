@@ -20,8 +20,8 @@ Cat.find(1)
 - Run methods on c - such as c.human and c.house
 - Methods can also be chained.
 ```
-  Cat.find(1).human
-  Cat.find(1).human.house
+Cat.find(1).human
+Cat.find(1).human.house
 ```
 
 ##  Features
@@ -38,7 +38,7 @@ Cat.find(1)
 ## ActiveRecord Methods Available
 - ::all
 ```
-  Cat.all # => Array of Cats
+Cat.all # => Array of Cats
 ```
 - ::find
 ```
