@@ -13,13 +13,16 @@ Uses Ruby to generate SQL query code via meta-programming.
 ```
 load 'demo.rb'
 ```
-- Try c = Cat.find(1)
+- Try a command
+```
+Cat.find(1)
+```
 - Run methods on c - such as c.human and c.house
 - Methods can also be chained.
-  ```
-    Cat.find(1).human
-    Cat.find(1).human.house
-  ```
+```
+  Cat.find(1).human
+  Cat.find(1).human.house
+```
 
 ##  Features
 
